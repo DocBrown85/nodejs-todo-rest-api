@@ -10,7 +10,7 @@ var mongoose    = require('mongoose');
 // setup database connection
 mongoose.Promise = global.Promise;
 mongoose.connect(
-  'mongo_db_connection_string',
+  'mongodb://todo-db-user:todo-db-password@ds159707.mlab.com:59707/tododb',
   {
     useMongoClient: true
   }
@@ -26,6 +26,13 @@ var routes      = require('./api/routes/todo-routes.js');
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+// this will allow CORS request: the client application can be anywhere
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 // define application port
 var port        = process.env.PORT || 3000;
