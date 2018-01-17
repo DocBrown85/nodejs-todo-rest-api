@@ -12,7 +12,7 @@ module.exports = {
 
         if (err) {
 
-          res.send(err);
+          res.status(400).send(err);
 
           return;
 
@@ -37,7 +37,7 @@ module.exports = {
 
         if (err) {
 
-          res.send(err);
+          res.status(400).send(err);
 
           return;
 
@@ -56,7 +56,7 @@ module.exports = {
 
         if (err) {
 
-          res.send(err);
+          res.status(400).send(err);
 
           return;
 
@@ -74,7 +74,7 @@ module.exports = {
 
         if (err) {
 
-          res.send(err);
+          res.status(400).send(err);
 
           return;
 
@@ -87,7 +87,7 @@ module.exports = {
 
           if (err) {
 
-            res.send(err);
+            res.status(400).send(err);
 
             return;
 
@@ -107,11 +107,11 @@ module.exports = {
         {
           _id: req.params.todoId
         },
-        function(err, bear) {
+        function(err, todo) {
 
             if (err) {
 
-              res.send(err);
+              res.status(400).send(err);
 
               return;
             }
