@@ -28,7 +28,8 @@ module.exports = function(app) {
 
   router.route('/todos')
   .get(todoList.readAll)
-  .post(todoList.create);
+  .post(todoList.create)
+  .delete(todoList.deleteCompleted);
 
   router.route('/todos/:todoId')
   .get(todoList.read)

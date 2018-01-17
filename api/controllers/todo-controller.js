@@ -24,6 +24,28 @@ module.exports = {
 
     },
 
+    deleteCompleted: function(req, res) {
+
+      Todo.remove(
+        {
+          done: true
+        },
+        function(err) {
+
+            if (err) {
+
+              res.status(400).send(err);
+
+              return;
+            }
+
+            res.json({ message: 'Todos Completed Deleted!' });
+        }
+
+      );
+
+    },
+
     create: function(req, res) {
 
       // create a new instance of the Todo model
@@ -107,7 +129,7 @@ module.exports = {
         {
           _id: req.params.todoId
         },
-        function(err, todo) {
+        function(err) {
 
             if (err) {
 
