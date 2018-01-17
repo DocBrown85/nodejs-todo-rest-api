@@ -27,14 +27,13 @@ module.exports = {
     create: function(req, res) {
 
       // create a new instance of the Todo model
-      var todo = new Todo();
-
       // set todo data (from the request)
+      var todo = {};
       todo.text = req.body.text;
       todo.done = req.body.done;
 
       // save todo and check for errors
-      todo.save(function(err) {
+      Todo.create(todo, function(err, todo) {
 
         if (err) {
 
@@ -44,7 +43,8 @@ module.exports = {
 
         }
 
-        res.json({ message: 'Todo Created!' });
+        // echo the new created todo
+        res.json(todo);
 
       });
 
