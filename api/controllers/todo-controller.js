@@ -1,11 +1,18 @@
 'use strict';
 
+// =============================================================================
+// TODO CONTROLLER FOR OUR API
+// =============================================================================
+
 var mongoose = require('mongoose'),
 
 Todo = mongoose.model('Todo');
 
 module.exports = {
 
+    //
+    // function to read the current todo list
+    //
     readAll: function(req, res) {
 
       Todo.find(function(err, todos) {
@@ -24,6 +31,10 @@ module.exports = {
 
     },
 
+    //
+    // function to delete completed todos from
+    // the todo list
+    //
     deleteCompleted: function(req, res) {
 
       Todo.remove(
@@ -46,6 +57,9 @@ module.exports = {
 
     },
 
+    //
+    // function to create a new todo item
+    //
     create: function(req, res) {
 
       // create a new instance of the Todo model
@@ -72,6 +86,10 @@ module.exports = {
 
     },
 
+    //
+    // function to retrieve a todo from the list
+    // by its id
+    //
     read: function(req, res) {
 
       Todo.findById(req.params.todoId, function(err, todo) {
@@ -90,6 +108,9 @@ module.exports = {
 
     },
 
+    //
+    // function to update a todo
+    //
     update: function(req, res) {
 
       Todo.findById(req.params.todoId, function(err, todo) {
@@ -123,6 +144,9 @@ module.exports = {
 
     },
 
+    //
+    // function to delete a todo
+    //
     delete: function(req, res) {
 
       Todo.remove(

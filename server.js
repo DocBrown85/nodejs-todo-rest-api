@@ -1,13 +1,14 @@
+// =============================================================================
 // BASE SETUP
 // =============================================================================
 
-// call the packages we need
-var express     = require('express');       // call express
+// import the packages we need
+var express     = require('express');
 var app         = express();                // define a new app with express
 var bodyParser  = require('body-parser');
 var mongoose    = require('mongoose');
 
-// setup database connection
+// setup database connection with mongoose
 mongoose.Promise = global.Promise;
 mongoose.connect(
   'mongodb://todo-db-user:todo-db-password@ds159707.mlab.com:59707/tododb',
@@ -16,10 +17,10 @@ mongoose.connect(
   }
 );
 
-//
+// import the Todo model
 var Todo        = require('./api/models/todo-model.js');
 
-// import out route module
+// import the route module
 var routes      = require('./api/routes/todo-routes.js');
 
 // configure app to use bodyParser()
@@ -38,9 +39,10 @@ app.use(function(req, res, next) {
 // define application port
 var port        = process.env.PORT || 3000;
 
-// register todo routes
+// register TODO Application routes
 routes(app);
 
+// start listening for incoming connections
 app.listen(port, function() {
-  console.log('NodeJS TODO REST API server started on: ' + port);
+  console.log('NodeJS TODO REST API server started on port: ' + port);
 });

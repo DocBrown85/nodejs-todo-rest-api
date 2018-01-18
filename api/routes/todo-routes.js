@@ -1,11 +1,13 @@
 'use strict'
 
-var express     = require('express');
-
-var todoList    = require('../controllers/todo-controller.js');
-
+// =============================================================================
 // ROUTES FOR OUR API
 // =============================================================================
+
+var express     = require('express');
+
+// import Todo Controller
+var todoList    = require('../controllers/todo-controller.js');
 
 module.exports = function(app) {
 
@@ -26,15 +28,17 @@ module.exports = function(app) {
   // TODO REST ROUTES
   //
 
+  // all URLs ending with '/todos' will be routed here
   router.route('/todos')
-  .get(todoList.readAll)
-  .post(todoList.create)
-  .delete(todoList.deleteCompleted);
+  .get(todoList.readAll)              // GET requests will execute this function
+  .post(todoList.create)              // POST requests will execute this function
+  .delete(todoList.deleteCompleted);  // DELETE requests will execute this function
 
+  // all URLs ending with '/todos/:todoId' will be routed here
   router.route('/todos/:todoId')
-  .get(todoList.read)
-  .put(todoList.update)
-  .delete(todoList.delete);
+  .get(todoList.read)                 // GET requests will execute this function
+  .put(todoList.update)               // PUT requests will execute this function
+  .delete(todoList.delete);           // DELETE requests will execute this function
 
   // register routes: all of our routes will be prefixed with /api
   app.use('/api', router);
